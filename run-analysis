@@ -1,0 +1,26 @@
+#! /bin/bash
+
+#Paul Chung
+#pchung2
+#HW2: Part 3
+
+if [ $# -lt 2 ]; then
+  echo "Need two arguments for this script to run"
+  exit 1
+fi
+
+filename=$2
+
+while read line; do
+  echo "Performing byte-size measurement on $line"
+  courseNum=$(echo "$line" | grep -Eos [0-9]{3})
+  byteSize=$(./perform-measurement "$line")
+  if [ "$byteSize" -gt 0 ]; then
+    echo "...successful"
+    echo "$courseNum $byteSize" >> $1
+  else 
+    echo "...failure"
+  fi
+done < $filename  
+
+exit 0

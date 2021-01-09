@@ -1,0 +1,21 @@
+#! /bin/bash
+
+#Paul Chung
+#pchung2
+#HW2: Part 2
+
+if [ $# -lt 1 ]; then
+  echo "Needs one argument"
+  exit 1
+else
+  wget -O file.html $1
+  if [ "$?" -ne 0 ]; then
+    echo 0
+    exit 1
+  fi 
+  wc -c < file.html
+  exit 0
+fi
+
+
+
